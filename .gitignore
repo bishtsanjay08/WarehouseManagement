@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+.vs/
+/WarehouseManagement/.vs/WarehouseManagement/FileContentIndex/24a7b226-436f-46ee-82fd-4cffde684b3b.vsidx
+/WarehouseManagement/.vs/WarehouseManagement/FileContentIndex/394a09c4-d378-4e44-82ad-b6b8c0e41389.vsidx
