@@ -1,0 +1,28 @@
+[
+  {
+    "ContainingType": "WarehouseManagement.Controllers.StoreController",
+    "Method": "GetAllAsync",
+    "RelativePath": "api/Store",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WarehouseManagement.Controllers.StoreController",
+    "Method": "Get",
+    "RelativePath": "api/Store/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WarehouseManagement.Models.Entities;
-
+using WarehouseManagement.Models;
 namespace WarehouseManagement.Data
 {
     public class AppDbContext : DbContext
@@ -9,12 +8,6 @@ namespace WarehouseManagement.Data
         {
         }
 
-        public DbSet<Company> Companies { get; set; }
-
-        public DbSet<Warehouse> Warehouses { get; set; }
-
-        public DbSet<Item> Items { get; set; }
-
-        public DbSet<Inventory> Inventories { get; set; }
+        public DbSet<Store> Stores { get; set; }
     }
 }
