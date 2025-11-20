@@ -14,25 +14,6 @@ namespace WarehouseManagement.Repositories.Implementations
             {
                 this._db = appDbContext;
             }
-        //public async Task<Store> AddAsync(Store store)
-        //{
-        //    _db.Stores.Add(store);
-        //    await _db.SaveChangesAsync();
-        //    return store;
-        //}
-
-        //public async Task<bool> DeleteAsync(int Id)
-        //{
-        //    var result = await _db.Stores.FindAsync(Id);
-        //    if (result == null)
-        //    {
-        //        return false;
-        //    }
-
-        //    _db.Stores.Remove(result);
-        //    await _db.SaveChangesAsync();
-        //    return true;
-        //}
 
         public async Task<List<Store>> GetAllAsync()
         {
@@ -48,16 +29,36 @@ namespace WarehouseManagement.Repositories.Implementations
             return result;
         }
 
-        //public async Task<Store?> UpdateAsync(Store store)
-        //{
-        //    var existing = await _db.Stores.FindAsync(store.Id);
-        //    if (existing == null)
-        //        return null;
-        //    existing.Name = store.Name;
-        //    existing.Location = store.Location;
+        public async Task<Store> AddAsync(Store store)
+        {
+            _db.Stores.Add(store);
+            await _db.SaveChangesAsync();
+            return store;
+        }
 
-        //    await _db.SaveChangesAsync();
-        //    return existing;
-        //}
+        public async Task<Store?> UpdateAsync(Store store)
+        {
+            var existing = await _db.Stores.FindAsync(store.Id);
+            if (existing == null)
+                return null;
+            existing.Name = store.Name;
+            existing.Location = store.Location;
+
+            await _db.SaveChangesAsync();
+            return existing;
+        }
+
+        public async Task<bool> DeleteAsync(int Id)
+        {
+            var result = await _db.Stores.FindAsync(Id);
+            if (result == null)
+            {
+                return false;
+            }
+
+            _db.Stores.Remove(result);
+            await _db.SaveChangesAsync();
+            return true;
+        }
     }
 }

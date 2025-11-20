@@ -26,5 +26,23 @@ namespace WarehouseManagement.Services.Implementations
                 return null;
             return result;
         }
+
+        public async Task<Store> AddAsync(Store store)
+        {
+            return await _repo.AddAsync(store);
+        }
+
+        public async Task<Store?> UpdateAsync(Store store)
+        {
+            var result = await _repo.UpdateAsync(store);
+            if (result == null)
+                return null;
+            return result;
+        }
+
+        public async Task<bool> DeleteAsync(int Id)
+        {
+            return await _repo.DeleteAsync(Id);
+        }
     }
 }
