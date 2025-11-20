@@ -87,17 +87,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/StoreCreateDto"
+                "$ref": "#/components/schemas/StoreUpdateDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/StoreCreateDto"
+                "$ref": "#/components/schemas/StoreUpdateDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/StoreCreateDto"
+                "$ref": "#/components/schemas/StoreUpdateDto"
               }
             }
           }
@@ -137,6 +137,20 @@
         "required": [
           "name"
         ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StoreUpdateDto": {
         "type": "object",
         "properties": {
           "name": {

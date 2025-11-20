@@ -57,15 +57,16 @@ namespace WarehouseManagement.Controllers
         [HttpPut]
         [Route("{Id:int}")]
         [ApiVersion("1.0")]
-        public async Task<IActionResult> Update(int Id, StoreCreateDto dto)
+        public async Task<IActionResult> Update(int Id, StoreUpdateDto dto)
         {
-            var store = _mapper.Map<Store>(dto);
-            store.Id = Id;
-            var updated = await _storeService.UpdateAsync(store);
-            if (updated == null) return NotFound();
+            var store = await _storeService.GetByIdAsync(Id);
+            if (store == null) return NotFound();
+            
+            _mapper.Map(dto, store);
 
-            var resultDto = _mapper.Map<StoreDto>(updated);
-            return Ok(resultDto);
+            await _storeService.UpdateAsync(store);
+
+            return NoContent();
             
         }
 

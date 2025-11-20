@@ -56,7 +56,7 @@
       },
       {
         "Name": "dto",
-        "Type": "WarehouseManagement.DTOs.StoreCreateDto",
+        "Type": "WarehouseManagement.DTOs.StoreUpdateDto",
         "IsRequired": true
       }
     ],

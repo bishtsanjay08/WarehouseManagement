@@ -10,6 +10,9 @@ namespace WarehouseManagement.Mappings
         {
             CreateMap<StoreCreateDto, Store>();
             CreateMap<Store, StoreDto>();
+            CreateMap<StoreUpdateDto, Store>()
+            .ForAllMembers(opt =>
+                opt.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
 }
