@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using WarehouseManagement.Data;
@@ -6,6 +7,7 @@ using WarehouseManagement.Repositories.Implementations;
 using WarehouseManagement.Repositories.Interfaces;
 using WarehouseManagement.Services.Implementations;
 using WarehouseManagement.Services.Interfaces;
+using WarehouseManagement.Swagger;
 
 namespace WarehouseManagement
 {
@@ -25,6 +27,8 @@ namespace WarehouseManagement
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+
 
             //Mapping
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -58,7 +62,20 @@ namespace WarehouseManagement
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwaggerUI(options =>
+                {
+                    var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
+                    foreach (var desc in provider.ApiVersionDescriptions)
+                    {
+                        options.SwaggerEndpoint(
+                            $"/swagger/{desc.GroupName}/swagger.json",
+                            $"Store Api {desc.GroupName.ToUpper()}"
+                            );
+                    }
+                    
+
+                });
             }
 
             app.UseHttpsRedirection();

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WarehouseManagement")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2cdf5fd501d4540b2aca4248eac845b41491379f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+731374dd70253ba2b7ca5721eaab303c3b846add")]
 [assembly: System.Reflection.AssemblyProductAttribute("WarehouseManagement")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WarehouseManagement")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

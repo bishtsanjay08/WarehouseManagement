@@ -7,8 +7,10 @@ using WarehouseManagement.Services.Interfaces;
 
 namespace WarehouseManagement.Controllers
 {
-    [Route("api/v{version:apiVersion}/store")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
+    [Route("api/v{version:apiVersion}/store")]
     public class StoreController : ControllerBase
     {
         private readonly IStoreService _storeService;
@@ -21,7 +23,8 @@ namespace WarehouseManagement.Controllers
         }
 
         [HttpGet]
-        [ApiVersion("1.0")]
+        [MapToApiVersion("1.0")]
+        [ApiExplorerSettings(GroupName = "v1")]
         public async Task<IActionResult> GetAllAsync()
         {
             var list = await _storeService.GetAllAsync();
@@ -32,7 +35,8 @@ namespace WarehouseManagement.Controllers
 
         [HttpGet]
         [Route("{Id:int}")]
-        [ApiVersion("1.0")]
+        [MapToApiVersion("1.0")]
+        [ApiExplorerSettings(GroupName = "v1")]
 
         public async Task<IActionResult> Get(int Id)
         {
@@ -44,19 +48,36 @@ namespace WarehouseManagement.Controllers
             return Ok(_mapper.Map<StoreDto>(w));
         }
 
+        [HttpGet]
+        [Route("{Id:int}")]
+        [MapToApiVersion("2.0")]
+        [ApiExplorerSettings(GroupName = "v2")]
+
+        public async Task<IActionResult> GetV2(int Id)
+        {
+            var w = await _storeService.GetByIdAsync(Id);
+
+            if (w == null)
+                return NotFound();
+
+            return Ok(_mapper.Map<StoreV2Dto>(w));
+        }
+
         [HttpPost]
-        [ApiVersion("1.0")]
+        [MapToApiVersion("1.0")]
+        [ApiExplorerSettings(GroupName = "v1")]
         public async Task<IActionResult> Create(StoreCreateDto dto)
         {
             var store = _mapper.Map<Store>(dto);
             var created = await _storeService.AddAsync(store);
             var resultDto = _mapper.Map<StoreDto>(created);
-            return CreatedAtAction(nameof(Get),new { id = created.Id, version = "1.0" }, resultDto);
+            return CreatedAtAction(nameof(Get),new { id = created.Id, version = "2.0" }, resultDto);
         }
 
         [HttpPut]
         [Route("{Id:int}")]
-        [ApiVersion("1.0")]
+        [MapToApiVersion("1.0")]
+        [ApiExplorerSettings(GroupName = "v1")]
         public async Task<IActionResult> Update(int Id, StoreUpdateDto dto)
         {
             var store = await _storeService.GetByIdAsync(Id);
@@ -72,7 +93,8 @@ namespace WarehouseManagement.Controllers
 
         [HttpDelete]
         [Route("{Id:int}")]
-        [ApiVersion("1.0")]
+        [MapToApiVersion("1.0")]
+        [ApiExplorerSettings(GroupName = "v1")]
         public async Task<IActionResult> Delete(int Id)
         {
             var result = await _storeService.DeleteAsync(Id);

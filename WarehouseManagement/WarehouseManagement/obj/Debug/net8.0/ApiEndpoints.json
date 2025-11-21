@@ -77,5 +77,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WarehouseManagement.Controllers.StoreController",
+    "Method": "GetV2",
+    "RelativePath": "api/v2/store/{Id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
