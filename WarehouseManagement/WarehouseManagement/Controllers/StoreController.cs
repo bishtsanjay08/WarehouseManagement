@@ -34,6 +34,17 @@ namespace WarehouseManagement.Controllers
         }
 
         [HttpGet]
+        [MapToApiVersion("2.0")]
+        [ApiExplorerSettings(GroupName = "v2")]
+        public async Task<IActionResult> GetAllAsyncV2()
+        {
+            var list = await _storeService.GetAllAsync();
+
+            return Ok(list.Select(w => _mapper.Map<StoreV2Dto>(w)));
+
+        }
+
+        [HttpGet]
         [Route("{Id:int}")]
         [MapToApiVersion("1.0")]
         [ApiExplorerSettings(GroupName = "v1")]
@@ -71,7 +82,7 @@ namespace WarehouseManagement.Controllers
             var store = _mapper.Map<Store>(dto);
             var created = await _storeService.AddAsync(store);
             var resultDto = _mapper.Map<StoreDto>(created);
-            return CreatedAtAction(nameof(Get),new { id = created.Id, version = "2.0" }, resultDto);
+            return CreatedAtAction(nameof(Get),new { id = created.Id, version = "1.0" }, resultDto);
         }
 
         [HttpPut]

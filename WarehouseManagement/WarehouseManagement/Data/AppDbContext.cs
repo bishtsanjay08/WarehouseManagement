@@ -9,5 +9,13 @@ namespace WarehouseManagement.Data
         }
 
         public DbSet<Store> Stores { get; set; }
+
+        public DbSet<StoreHistory> StoreHistories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Store>().HasQueryFilter(x => !x.IsDeleted);
+        }
+
     }
 }

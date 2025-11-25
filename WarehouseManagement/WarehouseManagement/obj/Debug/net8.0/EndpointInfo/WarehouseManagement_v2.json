@@ -5,6 +5,18 @@
     "version": "2.0"
   },
   "paths": {
+    "/api/v2/store": {
+      "get": {
+        "tags": [
+          "Store"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/v2/store/{Id}": {
       "get": {
         "tags": [

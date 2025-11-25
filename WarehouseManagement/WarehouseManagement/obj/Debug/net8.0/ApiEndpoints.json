@@ -80,6 +80,16 @@
   },
   {
     "ContainingType": "WarehouseManagement.Controllers.StoreController",
+    "Method": "GetAllAsyncV2",
+    "RelativePath": "api/v2/store",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WarehouseManagement.Controllers.StoreController",
     "Method": "GetV2",
     "RelativePath": "api/v2/store/{Id}",
     "HttpMethod": "GET",

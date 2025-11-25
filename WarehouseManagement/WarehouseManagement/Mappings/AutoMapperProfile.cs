@@ -9,8 +9,11 @@ namespace WarehouseManagement.Mappings
         public AutoMapperProfile()
         {
             CreateMap<StoreCreateDto, Store>();
+
             CreateMap<Store, StoreDto>();
+
             CreateMap<Store, StoreV2Dto>();
+
             CreateMap<StoreUpdateDto, Store>()
             .ForAllMembers(opt =>
                 opt.Condition((src, dest, srcMember) => srcMember != null));

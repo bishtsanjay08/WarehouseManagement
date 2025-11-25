@@ -50,11 +50,21 @@ namespace WarehouseManagement.Repositories.Implementations
 
         public async Task<bool> DeleteAsync(int Id)
         {
-            var result = await _db.Stores.FindAsync(Id);
+            var result = await _db.Stores.FirstOrDefaultAsync(s=> s.Id ==Id);
             if (result == null)
             {
                 return false;
             }
+            var history = new StoreHistory
+            {
+                StoreId = result.Id,
+                Name = result.Name,
+                Location = result.Location,
+                DeletedAt = DateTime.UtcNow
+            };_db.StoreHistories.Add(history);
+
+            result.IsDeleted = true;
+            result.DeletedAt = DateTime.UtcNow;
 
             _db.Stores.Remove(result);
             await _db.SaveChangesAsync();
